@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import { observer } from 'mobx-react-lite'
+import { autorun } from 'mobx'
 import { Todo } from '../Todo/Todo'
 import { Input } from '../Input/Input'
 import { Modal } from '../Modal/Modal'
 import { Textarea } from '../Textarea/Textarea'
+import { TodoType } from '../../types/todo'
 import TodoStore from '../../store/todo'
 import ModalStore from '../../store/modal'
 import classes from './list.module.scss'
-import { TodoType } from '../../types/todo'
 
 type Props = {
     view: string
@@ -20,17 +21,19 @@ export const TodoList: React.FC<Props> = observer(({ view }) => {
     })
 
     useEffect(() => {
-        if (TodoStore.editId) {
-            const index = TodoStore.todos.findIndex(t => t.id === TodoStore.editId)
-            const description: string = TodoStore.todos[index].description || ''
-            setForm({
-                title: TodoStore.todos[index].title,
-                description,
-            })
-        } else {
-            setForm({ title: '', description: '' })
-        }
-    }, [TodoStore.editId])
+        autorun(() => {
+            if (TodoStore.editId) {
+                const index = TodoStore.todos.findIndex(t => t.id === TodoStore.editId)
+                const description: string = TodoStore.todos[index].description || ''
+                setForm({
+                    title: TodoStore.todos[index].title,
+                    description,
+                })
+            } else {
+                setForm({ title: '', description: '' })
+            }
+        })
+    }, [])
 
     const saveHandler = () => {
         if (!form.title.trim()) return
