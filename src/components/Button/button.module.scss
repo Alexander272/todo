@@ -1,0 +1,24 @@
+@import '../../THEME.scss';
+
+.btn {
+    text-align: center;
+    padding: 11px 20px;
+    margin: 10px;
+    box-sizing: border-box;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.primary {
+    color: $mainColor;
+    border: 1px solid $mainColor;
+    border-radius: 15px;
+    background: transparent;
+    // width: 100%;
+    transition: all 0.3s ease-out;
+
+    &:hover {
+        color: #fff;
+        background-color: $mainColor;
+    }
+}

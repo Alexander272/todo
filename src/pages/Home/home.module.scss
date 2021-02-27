@@ -1,0 +1,65 @@
+@import '../../THEME.scss';
+
+.topBar {
+    padding: 20px 40px;
+    box-sizing: border-box;
+    width: 100%;
+    border-radius: 12px;
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+}
+
+.filters {
+    position: relative;
+
+    &:hover {
+        .filtersContainer {
+            height: 120px;
+            border-width: 1px;
+        }
+    }
+}
+.filtersTitle {
+    text-align: center;
+    padding: 11px 20px;
+    margin: 10px;
+    box-sizing: border-box;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: $mainColor;
+    border: 1px solid $mainColor;
+    border-radius: 15px;
+    background: transparent;
+    transition: all 0.3s ease-out;
+}
+.filtersContainer {
+    position: absolute;
+    top: 60px;
+    right: 0;
+    overflow: hidden;
+    height: 0;
+    transition: all 0.5s ease-in-out;
+    z-index: 15;
+    border: 0px solid $mainColor;
+    border-radius: 12px;
+    background-color: #fff;
+}
+.filtersItems {
+    padding: 11px 20px;
+    box-sizing: border-box;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+        background-color: darken($color: #fff, $amount: 5);
+    }
+}
+
+@media (max-width: 680px) {
+    .topBar {
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 10px 20px;
+    }
+}
